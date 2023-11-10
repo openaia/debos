@@ -1,0 +1,15 @@
+# recipe.yaml
+
+debosargs: ["--memory=4G"]
+
+architecture: arm64
+
+actions:
+- action: recipe
+  recipe: ./ospack.yaml
+
+- action: recipe
+  recipe: ./osvideopack.yaml
+
+- action: recipe
+  recipe: ./image.yaml

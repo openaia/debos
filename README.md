@@ -27,7 +27,8 @@ build@myhost:~$ git clone git@github.com:openaia/debos.git
 Build the openaia,
 ```
 build@myhost:~$ cd debos
-build@myhost:~$ ./build.sh
+build@myhost:~$ ./download-artifacts.sh
+build@myhost:~$ sudo debos recipe.yaml
 ```
 
 For custom artifacts, build the [kernel and u-boot](https://gitlab.com/edgeble-neural-compute-module/debos/-/blob/main/README-kernel.md?ref_type=heads) and then add prebuilt directory with all binaries and deb files like below structure.
