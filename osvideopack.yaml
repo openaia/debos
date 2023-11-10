@@ -1,0 +1,138 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+{{ $ospack := or .ospack (printf "ospack-%s-%s" $suite $architecture) }}
+{{ $osvideopack := or .osvideopack (printf "osvideopack-%s-%s" $suite $architecture) }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: unpack
+    description: Unpack ospack
+    file: {{ $ospack }}.tar.gz
+
+  - action: apt
+    description: APT tools
+    packages:
+      - wget
+      - gnupg2
+
+  - action: run
+    description: Apply Radxa APT
+    chroot: true
+    environment:
+      DEB_SUITE: {{$suite}}
+    script: scripts/setup-radxa-apt.sh apply {{$suite}}
+
+  - action: apt
+    description: Bluetooth packages
+    packages:
+      - blueman
+      - bluez
+
+  - action: apt
+    description: libs
+    packages:
+      - gstreamer1.0-x
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-plugins-bad
+      - gstreamer1.0-plugins-ugly
+      - libxml2
+      - libpcap0.8
+      - libaudit1
+      - libnotify4
+      - libc6
+      - libjson-c-dev
+      - libgtest-dev
+      - libstdc++6
+      - libmraa
+      - libjson-c5
+      - libgcc-s1
+
+  - action: apt
+    description: Libv4l
+    packages:
+      - dvb-tools=1.20.0-2
+      - libdvbv5-0=1.20.0-2
+      - libdvbv5-doc=1.20.0-2
+      - libv4l2rds0=1.20.0-2
+      - libv4l-dev=1.20.0-2
+      - qv4l2=1.20.0-2
+      - ir-keytable=1.20.0-2
+      - libdvbv5-dev=1.20.0-2
+      - libv4l-0=1.20.0-2
+      - libv4lconvert0=1.20.0-2
+      - libv4l-rkmpp=1.4.0-1
+      - v4l-utils=1.20.0-2
+
+  - action: apt
+    description: Graphics packages
+    packages:
+      - libmali-valhall-g610-g6p0-x11
+      - glmark2-data
+      - glmark2-es2-x11
+      - libkms1=2.4.104-1
+      - libdrm-cursor=1.3.0-1
+      - libdrm-cursor-dev=1.3.0-1
+
+  - action: apt
+    description: Mpp packages
+    packages:
+      - librockchip-mpp1
+      - librockchip-mpp-dev
+      - librockchip-vpu0
+      - rockchip-mpp-demos
+
+  - action: apt
+    description: Sound
+    packages:
+      - pulseaudio-module-bluetooth
+      - pulseaudio
+      - alsa-utils
+      - pavucontrol
+
+  - action: apt
+    description: Xfce packages
+    packages:
+      - xfce4
+      - xfce4-goodies
+      - task-xfce-desktop
+      - lightdm
+      - dialog
+      - tango-icon-theme
+      - light-locker
+      - at-spi2-core
+
+  - action: apt
+    description: Xserver
+    packages:
+      - xserver-xorg-core=2:1.20.11-1
+      - xserver-xorg-dev=2:1.20.11-1
+      - xserver-xorg-legacy=2:1.20.11-1
+
+  - action: overlay
+    source: overlays/
+    destination: /
+
+  - action: run
+    description: Install camera-engine-rkaiq
+    chroot: true
+    command: |
+      set -e
+      dpkg -i /packages/camera-engine-rkaiq_3.0.2_arm64.deb
+
+  - action: run
+    description: IQFiles
+    chroot: true
+    command: |
+      set -e
+      cp /packages/iqfiles/imx415_EDGEBLE-CAM4K-A00_DEFAULT.json /etc/iqfiles/
+
+  - action: run
+    description: Revert Radxa APT
+    chroot: true
+    script: scripts/setup-radxa-apt.sh revert
+
+  - action: pack
+    description: Pack into tarball
+    file: {{ $osvideopack }}.tar.gz

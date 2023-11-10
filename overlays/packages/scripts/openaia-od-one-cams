@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sdl2-cam 1 11 1 model/RK3588/yolov5s-640-640.rknn 640 640 &

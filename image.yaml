@@ -1,0 +1,111 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+{{ $osinpack := or .osinpack "osvideopack" }}
+{{ $ospack := or .ospack (printf "%s-%s-%s" $osinpack $suite $architecture) }}
+{{ $board := or .board "neu6b-io" }}
+{{ $imagesize := or .imagesize "6GB" }}
+{{ $image := or .image (printf "openaia-%s-%s" $board $suite) }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: unpack
+    description: Unpack {{ $ospack }}
+    file: {{ $ospack }}.tar.gz
+
+  - action: image-partition
+    imagename: {{ $image }}.img
+    imagesize: {{$imagesize}}
+    partitiontype: gpt
+    mountpoints:
+      - mountpoint: /
+        partition: rootfs
+      - mountpoint: /boot
+        partition: boot
+        options: [ x-systemd.automount ]
+    partitions:
+      - name: loader1
+        fs: none
+        start: 64s
+        end: 7168s
+      - name: loader2
+        fs: none
+        start: 16384s
+        end: 24575s
+      - name: boot
+        fs: fat32
+        start: 32768S
+        end: 1081343S
+        flags: [ boot, esp ]
+      - name: rootfs
+        fs: ext4
+        partuuid: b921b045-1df0-41c3-af44-4c6f280d3fae
+        start: 1081344S
+        end: 100%
+
+  - action: filesystem-deploy
+    description: Deploying filesystem onto image
+    setup-fstab: true
+    setup-kernel-cmdline: true
+
+  - action: apt
+    description: Install initramfs-tools
+    packages:
+      - initramfs-tools
+
+  - action: overlay
+    source: overlays/boot
+    destination: /boot
+
+  - action: overlay
+    source: overlays/
+    destination: /
+
+  - action: run
+    description: Install Linux Overlay
+    chroot: true
+    command: |
+      set -e
+
+      dpkg -i /packages/rockchip-overlay*.deb
+
+  - action: run
+    description: Resize-assistant
+    chroot: true
+    command: |
+      set -e
+
+      dpkg -i /packages/resize-assistant*.deb
+
+  - action: overlay
+    source: prebuilt/
+    destination: /
+
+  - action: run
+    description: Install Linux
+    chroot: true
+    command: |
+      set -e
+
+      dpkg -i /linux/linux-headers-*.deb
+      dpkg -i /linux/linux-image-*.deb
+
+  - action: raw
+    description: Flash idbloader.img to loader1
+    origin: recipe
+    source: prebuilt/idbloader.img
+    partition: loader1
+    offset: 0
+
+  - action: raw
+    description: Flash u-boot.itb to loader2
+    origin: recipe
+    source: prebuilt/u-boot.itb
+    partition: loader2
+    offset: 0
+
+  - action: run
+    description: Create block map for {{ $image }}.img
+    chroot: false
+    postprocess: true
+    command: bmaptool create {{ $image }}.img > {{ $image }}.bmap

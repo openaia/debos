@@ -1,0 +1,68 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+{{ $ospack := or .ospack (printf "ospack-%s-%s" $suite $architecture) }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: debootstrap
+    description: Bootstrap Debian {{ $suite }}
+    suite: {{ $suite }}
+    components:
+      - main
+      - contrib
+      - non-free
+    mirror: https://deb.debian.org/debian
+
+  - action: apt
+    description: Install systemd
+    packages:
+      - systemd
+      - systemd-sysv
+      - udev
+
+  - action: overlay
+    description: Enable DHCP IP on Ethernet connections
+    source: overlays/network-wired
+
+  - action: apt
+    description: Install packages for scripts/setup-user.sh
+    packages:
+      - sudo
+      - adduser
+
+  - action: run
+    description: Setup user
+    chroot: true
+    script: scripts/setup-user.sh
+
+  - action: apt
+    description: Install deb dependency packages
+    packages:
+      - linux-base
+      - file
+      - bc
+      - gdisk
+      - parted
+      - zstd
+
+  - action: apt
+    description: Install misc packages
+    packages:
+      - network-manager
+      - net-tools
+      - iproute2
+      - iperf3
+      - iputils-ping
+      - traceroute
+      - i2c-tools
+      - usbutils
+      - pciutils
+      - can-utils
+      - evtest
+      - minicom
+      - ppp
+
+  - action: pack
+    description: Pack into tarball
+    file: {{ $ospack }}.tar.gz
