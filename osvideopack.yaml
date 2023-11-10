@@ -127,7 +127,8 @@ actions:
     chroot: true
     command: |
       set -e
-      cp /packages/iqfiles/imx415_EDGEBLE-CAM4K-A00_DEFAULT.json /etc/iqfiles/
+      mkdir -p /etc/iqfiles/ && cp -v /packages/iqfiles/imx415_EDGEBLE-CAM4K-A00_DEFAULT.json /etc/iqfiles/
+      cp -v /packages/scripts/openaia-od-* /usr/bin
 
   - action: run
     description: Revert Radxa APT
