@@ -31,21 +31,6 @@ build@myhost:~$ ./download-artifacts.sh
 build@myhost:~$ sudo debos --memory=4Gb recipe.yaml
 ```
 
-For custom artifacts, build the [kernel and u-boot](https://gitlab.com/edgeble-neural-compute-module/debos/-/blob/main/README-kernel.md?ref_type=heads) and then add prebuilt directory with all binaries and deb files like below structure.
-```
-prebuilt/
-prebuilt/idbloader.img
-prebuilt/u-boot.itb
-prebuilt/linux
-prebuilt/linux/linux-image-5.10.110-1-rockchip-g8e20070fcaf5_5.10.110-1-rockchip_arm64.deb
-prebuilt/linux/linux-libc-dev_5.10.110-1-rockchip_arm64.deb
-prebuilt/linux/linux-image-5.10.110-1-rockchip-g8e20070fcaf5-dbg_5.10.110-1-rockchip_arm64.deb
-prebuilt/linux/linux-headers-5.10.110-1-rockchip-g8e20070fcaf5_5.10.110-1-rockchip_arm64.deb
-prebuilt/linux/linux-5.10.110-1-rockchip-g8e20070fcaf5_5.10.110-1-rockchip_arm64.changes
-```
-
-With custom arifacts, add --custom-artifacts flag while running build.sh.
-
 ## Program
 
 But make sure to copy kernel deb and u-boot images in overlay/packages directory.
