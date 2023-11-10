@@ -20,7 +20,7 @@ $ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/buil
 All steps here are inside docker-container
 ```
 build@myhost:~$ cd shared
-build@myhost:~$ mkdir debos-bsp && cd debos-bsp
+build@myhost:~$ mkdir debos-openaia && cd debos-openaia
 build@myhost:~$ git clone git@github.com:openaia/debos.git
 ```
 
