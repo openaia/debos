@@ -122,15 +122,6 @@ actions:
     source: overlays/
     destination: /
 
-{{ if eq $multi_cam_rkaiq "true" }}
-  - action: run
-    description: Install camera-engine-rkaiq
-    chroot: true
-    command: |
-      set -e
-      dpkg -i /packages/camera-engine-rkaiq_3.0.2_arm64.deb
-{{ end }}
-
   - action: run
     description: IQFiles
     chroot: true
