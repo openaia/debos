@@ -28,7 +28,7 @@ Build the openaia,
 ```
 build@myhost:~$ cd debos
 build@myhost:~$ ./download-artifacts.sh
-build@myhost:~$ sudo debos recipe.yaml
+build@myhost:~$ sudo debos --memory=4Gb recipe.yaml
 ```
 
 For custom artifacts, build the [kernel and u-boot](https://gitlab.com/edgeble-neural-compute-module/debos/-/blob/main/README-kernel.md?ref_type=heads) and then add prebuilt directory with all binaries and deb files like below structure.

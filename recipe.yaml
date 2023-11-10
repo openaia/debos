@@ -1,7 +1,5 @@
 # recipe.yaml
 
-debosargs: ["--memory=4G"]
-
 architecture: arm64
 
 actions:
