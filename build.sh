@@ -6,10 +6,10 @@ if [ "$1" != "--custom-artifacts" ]; then
 fi
 
 # Build OS
-debos ospack.yaml
+sudo debos ospack.yaml
 
 # Build Video
-debos --memory=4Gb osvideopack.yaml
+sudo debos --memory=4Gb osvideopack.yaml
 
 # Build Image
-debos --memory=4Gb image.yaml
+sudo debos --memory=4Gb image.yaml
