@@ -12,8 +12,10 @@ mkdir -p prebuilt
 wget -qP prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/idbloader.img"
 wget -qP prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
 
+KERNEL_REL="ncm6b-v2023.11"
+
 # linux
-gdown --id 1e_DeUv-jMP4w4G_oDipzuSHCqPoCWtug -O prebuilt/linux.tar.xz
+wget -qP prebuilt "https://github.com/openaia/kernel/releases/download/$KERNEL_REL/linux.tar.xz"
 tar xvf prebuilt/linux.tar.xz -C prebuilt
 rm -rf prebuilt/linux.tar.xz
 
