@@ -10,14 +10,14 @@ U_BOOT_REL="ncm6b-v2023.11"
 # u-boot
 mkdir -p prebuilt
 echo "=== Downloading u-boot artifacts ==="
-wget -qP prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/idbloader.img"
-wget -qP prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
+wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/idbloader.img"
+wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
 
 KERNEL_REL="ncm6b-v2023.11"
 
 # linux
 echo "=== Downloading linux artifacts ==="
-wget -qP prebuilt "https://github.com/openaia/kernel/releases/download/$KERNEL_REL/linux.tar.xz"
+wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/kernel/releases/download/$KERNEL_REL/linux.tar.xz"
 tar xvf prebuilt/linux.tar.xz -C prebuilt
 rm -rf prebuilt/linux.tar.xz
 
