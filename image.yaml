@@ -39,9 +39,9 @@ actions:
         flags: [ boot, esp ]
       - name: rootfs
         fs: ext4
-        partuuid: b921b045-1df0-41c3-af44-4c6f280d3fae
         start: 1081344S
         end: 100%
+        partuuid: b921b045-1df0-41c3-af44-4c6f280d3fae
 
   - action: filesystem-deploy
     description: Deploying filesystem onto image
@@ -54,7 +54,7 @@ actions:
       - initramfs-tools
 
   - action: overlay
-    source: overlays/boot
+    source: overlays/boot/rockchip
     destination: /boot
 
   - action: overlay
@@ -78,16 +78,9 @@ actions:
       dpkg -i /packages/resize-assistant*.deb
 
   - action: overlay
-    source: prebuilt/
-    destination: /
-
-  - action: run
-    description: Install Linux
-    chroot: true
-    command: |
-      set -e
-
-      dpkg -i /linux/*.deb
+    description: Copy Image, dtb
+    source: prebuilt/linux/
+    destination: /boot
 
   - action: raw
     description: Flash idbloader.img to loader1
