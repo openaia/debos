@@ -87,8 +87,7 @@ actions:
     command: |
       set -e
 
-      dpkg -i /linux/linux-headers-*.deb
-      dpkg -i /linux/linux-image-*.deb
+      dpkg -i /linux/*.deb
 
   - action: raw
     description: Flash idbloader.img to loader1
