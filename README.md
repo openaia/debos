@@ -7,12 +7,12 @@ Below is the instructions of how to build openaia image at docker host.
 Install the [docker](https://docs.docker.com/engine/install/ubuntu/) and it is recommended to use associated docker image that openaia required.
 
 ```
-$ docker pull ghcr.io/openaia/easy-build/build-debos:bullseye
+$ docker pull ghcr.io/openaia/easy-build/build-debos:bookworm
 ```
 
 Run the docker with your workspace path,
 ```
-$ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bullseye
+$ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm
 ```
 
 ## Build debos
