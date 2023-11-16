@@ -106,4 +106,4 @@ actions:
   - action: run
     description: Compress {{ $image }}.img
     postprocess: true
-    command: xz -9e {{ $image }}.img
+    command: pigz -f {{ $image }}.img
