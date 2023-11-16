@@ -43,6 +43,6 @@ jobs:
           - Edgeble NCM6B, NCM6A
         files: |
           ${{ github.workspace }}/openaia-bullseye-6tops.bmap
-          ${{ github.workspace }}/openaia-bullseye-6tops.img.xz
+          ${{ github.workspace }}/openaia-bullseye-6tops.img.gz
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
