@@ -37,12 +37,12 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: "v2023.11"
-        tag_body: |
+        body: |
           ## OpenAIA Debos v2023.11 Release
           - Add 6TOPS NCM support
           - Edgeble NCM6B, NCM6A
         files: |
           ${{ github.workspace }}/openaia-bullseye-6tops.bmap
-          ${{ github.workspace }}/openaia-bullseye-6tops.img
+          ${{ github.workspace }}/openaia-bullseye-6tops.img.xz
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
