@@ -7,6 +7,8 @@ on:
 
 jobs:
   build:
+    permissions: write-all
+    name: u-boot ncm6b runner
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +25,24 @@ jobs:
       run: docker pull ghcr.io/openaia/easy-build/build-debos:bookworm
 
     - name: Build OpenAIA Debos
-      run: docker run --rm --tty --privileged --net host -v ${{ github.workspace }}:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm sudo debos --memory=4Gb recipe.yaml
+      run: |
+        docker run --rm --tty \
+          --privileged \
+          --net host \
+          -v ${{ github.workspace }}:/home/build/shared \
+          -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm \
+          sudo debos --memory=4Gb -t imgname:6tops recipe.yaml
 
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "openaia-6tops-v2023.11"
+        tag_name: "v2023.11"
+        tag_body: |
+          ## OpenAIA Debos v2023.11 Release
+          - Add 6TOPS NCM support
+          - Edgeble NCM6B, NCM6A
         files: |
-          ${{ github.workspace }}/openaia-neu6b-io-bullseye.bmap
-          ${{ github.workspace }}/openaia-neu6b-io-bullseye.img
+          ${{ github.workspace }}/openaia-bullseye-6tops.bmap
+          ${{ github.workspace }}/openaia-bullseye-6tops.img
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
