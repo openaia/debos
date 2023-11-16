@@ -23,11 +23,11 @@ build@myhost:~$ mkdir debos-openaia && cd debos-openaia
 build@myhost:~$ git clone git@github.com:openaia/debos.git
 ```
 
-Build the openaia,
+Build the openaia for 6TOPS,
 ```
 build@myhost:~$ cd debos
 build@myhost:~$ ./download-artifacts.sh
-build@myhost:~$ sudo debos --memory=4Gb recipe.yaml
+build@myhost:~$ sudo debos --memory=4Gb -t imgname:6top recipe.yaml
 ```
 
 ## Program
@@ -36,5 +36,5 @@ But make sure to copy kernel deb and u-boot images in overlay/packages directory
 
 We can program microSD or eMMC, assume /dev/sdX is microSD detected in host,
 ```
-$ sudo bmaptool copy --bmap openaia-neu6b-io-bullseye.bmap openaia-neu6b-io-bullseye.img /dev/sdX
+$ sudo bmaptool copy --bmap openaia-neu6b-io-bullseye.bmap openaia-neu6b-io-bullseye.img.gz /dev/sdX
 ```
