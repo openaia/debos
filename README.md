@@ -12,14 +12,13 @@ $ docker pull ghcr.io/openaia/easy-build/build-debos:bookworm
 
 Run the docker with your workspace path,
 ```
-$ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm
+$ docker run -ti --privileged --net host -v <path/to/workspace>:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm
 ```
 
 ## Build debos
 
 All steps here are inside docker-container
 ```
-build@myhost:~$ cd shared
 build@myhost:~$ mkdir debos-openaia && cd debos-openaia
 build@myhost:~$ git clone git@github.com:openaia/debos.git
 ```
