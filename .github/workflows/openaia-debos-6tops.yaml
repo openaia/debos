@@ -1,0 +1,36 @@
+name: Build and Release OpenAIA Debos 6TOPS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Download Artifacts
+      run: ./download-artifacts.sh
+
+    - name: Set up Remote Docker
+      uses: docker/setup-buildx-action@v1
+
+    - name: Pull Debian:bookworm
+      run: docker pull ghcr.io/openaia/easy-build/build-debos:bookworm
+
+    - name: Build OpenAIA Debos
+      run: docker run --rm --tty --privileged --net host -v ${{ github.workspace }}:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm sudo debos --memory=4Gb recipe.yaml
+
+    - name: Upload output artifacts
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: "openaia-6tops-v2023.11"
+        files: |
+          ${{ github.workspace }}/openaia-neu6b-io-bullseye.bmap
+          ${{ github.workspace }}/openaia-neu6b-io-bullseye.img
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
