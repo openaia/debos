@@ -102,3 +102,8 @@ actions:
     chroot: false
     postprocess: true
     command: bmaptool create {{ $image }}.img > {{ $image }}.bmap
+
+  - action: run
+    description: Compress {{ $image }}.img
+    postprocess: true
+    command: xz -9e {{ $image }}.img
