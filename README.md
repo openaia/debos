@@ -25,8 +25,7 @@ build@myhost:~$ git clone git@github.com:openaia/debos.git
 
 Build the openaia for 6TOPS,
 ```
-build@myhost:~$ cd debos
-build@myhost:~$ ./download-artifacts.sh
+build@myhost:~$ cd debos && ./download-artifacts.sh
 build@myhost:~$ sudo debos --memory=4Gb -t imgname:6top recipe.yaml
 ```
 
