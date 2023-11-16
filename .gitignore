@@ -9,3 +9,4 @@
 prebuilt
 *.bmap
 *.img
+*.img.gz
