@@ -1,5 +1,7 @@
 # recipe.yaml
 
+{{ $imgname := or .imgname "dummy" }}
+
 architecture: arm64
 
 actions:
@@ -11,3 +13,5 @@ actions:
 
 - action: recipe
   recipe: ./image.yaml
+  variables:
+    imgname: {{ $imgname }}
