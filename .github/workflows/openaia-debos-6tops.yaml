@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     permissions: write-all
-    name: u-boot ncm6b runner
+    name: OpenAIA Debos 6TOPS runner
     runs-on: ubuntu-latest
 
     steps:
