@@ -4,7 +4,8 @@
 {{ $ospack := or .ospack (printf "%s-%s-%s" $osinpack $suite $architecture) }}
 {{ $board := or .board "neu6b-io" }}
 {{ $imagesize := or .imagesize "6GB" }}
-{{ $image := or .image (printf "openaia-%s-%s" $board $suite) }}
+{{ $imgname := or .imgname "dummy" }}
+{{ $image := or .image (printf "openaia-%s-%s" $suite $imgname) }}
 
 architecture: {{ $architecture }}
 
