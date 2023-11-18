@@ -2,36 +2,28 @@
 
 Below is the instructions of how to build openaia image at docker host.
 
-## Pull docker-container
-
-Install the [docker](https://docs.docker.com/engine/install/ubuntu/) and it is recommended to use associated docker image that openaia required.
+## Get source
 
 ```
-$ docker pull ghcr.io/openaia/easy-build/build-debos:bookworm
+$ mkdir debos-openaia && cd debos-openaia
+$ git clone git@github.com:openaia/debos.git
 ```
 
-Run the docker with your workspace path,
+## Get artifacts
+
 ```
-$ docker run -ti --privileged --net host -v <path/to/workspace>:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm
+$ ./download-artifacts.sh
 ```
 
-## Build debos
+## Build OpenAIA
 
-All steps here are inside docker-container
-```
-build@myhost:~$ mkdir debos-openaia && cd debos-openaia
-build@myhost:~$ git clone git@github.com:openaia/debos.git
-```
+Install the [docker](https://docs.docker.com/engine/install/ubuntu/) for openaia container to use.
 
-Build the openaia for 6TOPS,
 ```
-build@myhost:~$ cd debos && ./download-artifacts.sh
-build@myhost:~$ sudo debos --memory=4Gb -t imgname:6top recipe.yaml
+$ docker run -ti --privileged --net host -v debos-openaia:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 sudo debos --memory=4Gb -t imgname:6top recipe.yaml
 ```
 
 ## Program
-
-But make sure to copy kernel deb and u-boot images in overlay/packages directory.
 
 We can program microSD or eMMC, assume /dev/sdX is microSD detected in host,
 ```
