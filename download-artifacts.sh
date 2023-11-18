@@ -13,7 +13,7 @@ echo "=== Downloading u-boot artifacts ==="
 wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/idbloader.img"
 wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
 
-KERNEL_REL="ncm6b-v2023.11"
+KERNEL_REL="v2023.11-6TOPS"
 
 # linux
 echo "=== Downloading linux artifacts ==="
