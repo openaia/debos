@@ -49,44 +49,20 @@ actions:
     setup-fstab: true
     setup-kernel-cmdline: true
 
-  - action: apt
-    description: Install initramfs-tools
-    packages:
-      - initramfs-tools
+  - action: overlay
+    description: Copy Image, dtb
+    source: prebuilt/linux
+    destination: /boot
 
   - action: overlay
+    description: Copy extlinux
     source: overlays/boot/rockchip
     destination: /boot
 
   - action: overlay
-    source: overlays/
-    destination: /
-
-  - action: run
-    description: Install Linux Overlay
-    chroot: true
-    command: |
-      set -e
-
-      dpkg -i /packages/rockchip-overlay*.deb
-
-  - action: run
-    description: Resize-assistant
-    chroot: true
-    command: |
-      set -e
-
-      dpkg -i /packages/resize-assistant*.deb
-
-  - action: overlay
-    description: Copy Image, dtb
-    source: prebuilt/linux/
-    destination: /boot
-
-  - action: overlay
     description: Copy modules
-    source: prebuilt/linux/modules/
-    destination: /lib/modules/
+    source: prebuilt/modules
+    destination: /lib/modules
 
   - action: raw
     description: Flash idbloader.img to loader1
