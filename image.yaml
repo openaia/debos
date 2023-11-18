@@ -83,6 +83,11 @@ actions:
     source: prebuilt/linux/
     destination: /boot
 
+  - action: overlay
+    description: Copy modules
+    source: prebuilt/linux/modules/
+    destination: /rootfs/lib/modules/
+
   - action: raw
     description: Flash idbloader.img to loader1
     origin: recipe
