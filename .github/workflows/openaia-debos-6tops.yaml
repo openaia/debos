@@ -33,7 +33,7 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2023.11"
+        tag_name: "v2023.11-6TOPS"
         body: |
           ## OpenAIA Debos v2023.11 Release
           - Add 6TOPS NCM support
