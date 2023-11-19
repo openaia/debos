@@ -33,11 +33,10 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2023.11-6TOPS"
+        tag_name: "v2023.12-6TOPS-rc1"
         body: |
-          ## OpenAIA Debos v2023.11 Release
-          - Add 6TOPS NCM support
-          - Edgeble NCM6B, NCM6A
+          ## OpenAIA Debos v2023.12-6TOPS-rc1
+          - Fix for USB3.0 hang
         files: |
           ${{ github.workspace }}/openaia-bullseye-6tops.bmap
           ${{ github.workspace }}/openaia-bullseye-6tops.img.gz
