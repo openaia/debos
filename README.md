@@ -2,17 +2,17 @@
 
 Build instruction for OpenAIA Debos image in docker container.
 
-## Get source
+## Clone source
 
 ```
 $ mkdir debos-openaia && cd debos-openaia
 $ git clone git@github.com:openaia/debos.git
 ```
 
-## Get artifacts
+## Download artifacts
 
 ```
-$ ./download-artifacts.sh
+$ cd debos && ./download-artifacts.sh && cd -
 ```
 
 ## Build OpenAIA
