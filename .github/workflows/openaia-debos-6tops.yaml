@@ -33,10 +33,10 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2023.12-6TOPS-rc1"
+        tag_name: "v2023.12-6TOPS-rc2"
         body: |
-          ## OpenAIA Debos v2023.12-6TOPS-rc1
-          - Fix for USB3.0 hang
+          ## OpenAIA Debos v2023.12-6TOPS-rc2
+          - Add 4G Quectel support
         files: |
           ${{ github.workspace }}/openaia-bullseye-6tops.bmap
           ${{ github.workspace }}/openaia-bullseye-6tops.img.gz
