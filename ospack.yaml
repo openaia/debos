@@ -25,6 +25,10 @@ actions:
     description: Enable DHCP IP on Ethernet connections
     source: overlays/network-wired
 
+  - action: overlay
+    description: Add ppp scripts for 4G Quectel
+    source: overlays/4g-ppp-scripts
+
   - action: apt
     description: Install packages for scripts/setup-user.sh
     packages:
@@ -60,8 +64,8 @@ actions:
       - pciutils
       - can-utils
       - evtest
-      - minicom
       - ppp
+      - picocom
 
   - action: pack
     description: Pack into tarball

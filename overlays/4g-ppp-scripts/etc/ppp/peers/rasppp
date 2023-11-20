@@ -1,0 +1,53 @@
+# The password is hidden during connection debugging
+hide-password
+
+
+# The phone does not require authentication
+noauth
+
+# Used for call control scripts
+connect '/usr/sbin/chat -s -v -f /etc/ppp/peers/rasppp-chat-connect'
+
+# Disconnect script
+disconnect '/usr/sbin/chat -s -v -f /etc/ppp/peers/rasppp-chat-disconnect'
+
+# Debugging information
+debug
+
+# 4G module
+/dev/ttyUSB3
+
+# Serial baud rate
+115200
+
+# Use the default route
+defaultroute
+
+# The default IP address is not used
+noipdefault
+
+# PPP compression is not used
+novj
+novjccomp
+noccp
+ipcp-accept-local
+ipcp-accept-remote
+local
+
+# It is best to lock the serial bus, create a lock file, and other programs will be able to learn that the appropriate serial port has been used once they discover the existence of this file.
+lock
+dump
+
+nodetach
+
+# Username password (The configuration varies with carriers)
+user ctnet@mycdma.cn
+password vnet.mobi
+
+# Hardware control flow
+crtscts
+remotename 3gppp
+ipparam 3gppp
+
+# Use the DNS negotiated on the server side to set the usepeerdns parameter
+usepeerdns
