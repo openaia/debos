@@ -92,14 +92,6 @@ actions:
       - rockchip-mpp-demos
 
   - action: apt
-    description: Sound
-    packages:
-      - pulseaudio-module-bluetooth
-      - pulseaudio
-      - alsa-utils
-      - pavucontrol
-
-  - action: apt
     description: Xfce packages
     packages:
       - xfce4
@@ -119,16 +111,9 @@ actions:
       - xserver-xorg-legacy=2:1.20.11-1
 
   - action: overlay
-    source: overlays/
-    destination: /
-
-  - action: run
-    description: IQFiles
-    chroot: true
-    command: |
-      set -e
-      mkdir -p /etc/iqfiles/ && cp -v /packages/iqfiles/imx415_EDGEBLE-CAM4K-A00_DEFAULT.json /etc/iqfiles/
-      cp -v /packages/scripts/openaia-od-* /usr/bin
+    description: Add iqfiles
+    source: overlays/packages/iqfiles/
+    destination: /etc/iqfiles/
 
   - action: run
     description: Revert Radxa APT
