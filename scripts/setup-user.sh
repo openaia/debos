@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MYUSER=openaia
+MYUSER=open
 
 adduser --gecos $MYUSER \
   --disabled-password \
