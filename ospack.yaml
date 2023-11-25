@@ -23,11 +23,13 @@ actions:
 
   - action: overlay
     description: Enable DHCP IP on Ethernet connections
-    source: overlays/network-wired
+    source: overlays/network/
+    destination: /etc/systemd/network/
 
   - action: overlay
     description: Add ppp scripts for 4G Quectel
-    source: overlays/4g-ppp-scripts
+    source: overlays/ppp/
+    destination: /etc/ppp/
 
   - action: apt
     description: Install packages for scripts/setup-user.sh
@@ -56,6 +58,14 @@ actions:
       - evtest
       - ppp
       - picocom
+
+  - action: apt
+    description: Sound
+    packages:
+      - pulseaudio-module-bluetooth
+      - pulseaudio
+      - alsa-utils
+      - pavucontrol
 
   - action: pack
     description: Pack into tarball
