@@ -41,16 +41,6 @@ actions:
     script: scripts/setup-user.sh
 
   - action: apt
-    description: Install deb dependency packages
-    packages:
-      - linux-base
-      - file
-      - bc
-      - gdisk
-      - parted
-      - zstd
-
-  - action: apt
     description: Install misc packages
     packages:
       - network-manager
