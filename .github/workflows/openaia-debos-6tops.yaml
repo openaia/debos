@@ -33,11 +33,18 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2023.12-6TOPS-rc2"
+        tag_name: "v2023.12-6TOPS-rc3"
         body: |
-          ## OpenAIA Debos v2023.12-6TOPS-rc2
-          - Add 4G Quectel support
+          ## OpenAIA Debos v2023.12-6TOPS-rc3
+          - Add WiFi firmware
+          - Add RTL Ethernet firmware
+          - Add BT firmware
+          - Add linux-next support
+          - Cleanup packages
+          - Add new artifacts for linux-next
         files: |
+          ${{ github.workspace }}/ospack-bullseye-arm64.tar.gz
+          ${{ github.workspace }}/osvideopack-bullseye-arm64.tar.gz
           ${{ github.workspace }}/openaia-bullseye-6tops.bmap
           ${{ github.workspace }}/openaia-bullseye-6tops.img.gz
       env:
