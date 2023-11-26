@@ -58,6 +58,7 @@ actions:
       - evtest
       - ppp
       - picocom
+      - firmware-iwlwifi
 
   - action: apt
     description: Sound
