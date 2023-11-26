@@ -24,12 +24,6 @@ actions:
       DEB_SUITE: {{$suite}}
     script: scripts/setup-radxa-apt.sh apply {{$suite}}
 
-  - action: apt
-    description: Bluetooth packages
-    packages:
-      - blueman
-      - bluez
-
 {{ if eq $multi_cam_rkaiq "false" }}
   - action: apt
     description: Camera packages

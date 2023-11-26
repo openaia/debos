@@ -67,6 +67,12 @@ actions:
       - alsa-utils
       - pavucontrol
 
+  - action: apt
+    description: Bluetooth packages
+    packages:
+      - blueman
+      - bluez
+
   - action: pack
     description: Pack into tarball
     file: {{ $ospack }}.tar.gz
