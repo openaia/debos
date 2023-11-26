@@ -66,6 +66,7 @@ actions:
       - evtest
       - ppp
       - picocom
+      - firmware-iwlwifi
 
   - action: pack
     description: Pack into tarball
