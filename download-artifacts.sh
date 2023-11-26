@@ -25,5 +25,18 @@ wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/kernel
 tar xvf prebuilt/modules.tar.xz -C prebuilt
 rm -rf prebuilt/modules.tar.xz
 
+# linux-next
+KERNEL_REL="v2023.12-6TOPS-next-rc1"
+echo "=== Downloading linux-next artifacts ==="
+wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/kernel/releases/download/$KERNEL_REL/linux.tar.xz"
+tar xvf prebuilt/linux.tar.xz -C prebuilt
+rm -rf prebuilt/linux.tar.xz
+
+# modules
+echo "=== Downloading modules (linux-next) artifacts ==="
+wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/kernel/releases/download/$KERNEL_REL/modules.tar.xz"
+tar xvf prebuilt/modules.tar.xz -C prebuilt
+rm -rf prebuilt/modules.tar.xz
+
 find prebuilt/
 echo "=== Remember to remove prebuilt directory for new aritfacts to load ==="
