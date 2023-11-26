@@ -64,6 +64,11 @@ actions:
     source: prebuilt/modules
     destination: /lib/modules
 
+  - action: overlay
+    description: Copy firmware
+    source: overlays/firmware
+    destination: /lib/firmware
+
   - action: raw
     description: Flash idbloader.img to loader1
     origin: recipe
