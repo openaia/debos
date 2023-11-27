@@ -106,7 +106,7 @@ actions:
 
   - action: overlay
     description: Add iqfiles
-    source: overlays/packages/iqfiles/
+    source: overlays/etc/iqfiles/
     destination: /etc/iqfiles/
 
   - action: run
