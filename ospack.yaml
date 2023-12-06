@@ -73,6 +73,11 @@ actions:
       - blueman
       - bluez
 
+  - action: overlay
+    description: Copy firmware
+    source: overlays/lib/firmware
+    destination: /lib/firmware
+
   - action: pack
     description: Pack into tarball
     file: {{ $ospack }}.tar.gz
