@@ -56,7 +56,7 @@ actions:
 
   - action: overlay
     description: Copy extlinux
-    source: overlays/boot/rockchip
+    source: overlay/boot/rockchip
     destination: /boot
 
   - action: raw

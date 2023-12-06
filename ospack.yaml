@@ -65,17 +65,17 @@ actions:
 
   - action: overlay
     description: Enable DHCP IP on Ethernet connections
-    source: overlays/network/
+    source: overlay/etc/systemd/network/
     destination: /etc/systemd/network/
 
   - action: overlay
     description: Add ppp scripts for 4G Quectel
-    source: overlays/ppp/
+    source: overlay/etc/ppp/
     destination: /etc/ppp/
 
   - action: overlay
     description: Copy firmware
-    source: overlays/lib/firmware
+    source: overlay/lib/firmware
     destination: /lib/firmware
 
   - action: overlay
