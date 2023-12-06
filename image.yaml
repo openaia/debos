@@ -59,11 +59,6 @@ actions:
     source: overlays/boot/rockchip
     destination: /boot
 
-  - action: overlay
-    description: Copy modules
-    source: prebuilt/modules
-    destination: /lib/modules
-
   - action: raw
     description: Flash idbloader.img to loader1
     origin: recipe

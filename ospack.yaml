@@ -21,16 +21,6 @@ actions:
       - systemd-sysv
       - udev
 
-  - action: overlay
-    description: Enable DHCP IP on Ethernet connections
-    source: overlays/network/
-    destination: /etc/systemd/network/
-
-  - action: overlay
-    description: Add ppp scripts for 4G Quectel
-    source: overlays/ppp/
-    destination: /etc/ppp/
-
   - action: apt
     description: Install packages for scripts/setup-user.sh
     packages:
@@ -74,9 +64,24 @@ actions:
       - bluez
 
   - action: overlay
+    description: Enable DHCP IP on Ethernet connections
+    source: overlays/network/
+    destination: /etc/systemd/network/
+
+  - action: overlay
+    description: Add ppp scripts for 4G Quectel
+    source: overlays/ppp/
+    destination: /etc/ppp/
+
+  - action: overlay
     description: Copy firmware
     source: overlays/lib/firmware
     destination: /lib/firmware
+
+  - action: overlay
+    description: Copy modules
+    source: prebuilt/modules
+    destination: /lib/modules
 
   - action: pack
     description: Pack into tarball
