@@ -17,7 +17,7 @@ Build OpenAIA for 6TOPS,
 ```
 $ cd debos
 $ ./download-artifacts.sh
-$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 sudo debos --memory=4Gb -t imgname:6top recipe.yaml
+$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 sudo debos --memory=4Gb -t imgname:6tops recipe.yaml
 ```
 
 ## Program
