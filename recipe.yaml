@@ -7,6 +7,8 @@ architecture: arm64
 actions:
 - action: recipe
   recipe: ./ospack.yaml
+  variables:
+    hostname: {{ $imgname }}
 
 - action: recipe
   recipe: ./osvideopack.yaml
