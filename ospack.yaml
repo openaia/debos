@@ -1,6 +1,7 @@
 {{ $architecture := or .architecture "arm64" }}
 {{ $suite := or .suite "bullseye" }}
 {{ $ospack := or .ospack (printf "ospack-%s-%s" $suite $architecture) }}
+{{ $hostname := or .hostname "open" }}
 
 architecture: {{ $architecture }}
 
@@ -82,6 +83,10 @@ actions:
     description: Copy modules
     source: prebuilt/modules
     destination: /lib/modules
+
+  - action: run
+    chroot: true
+    command: echo {{ $hostname }} > /etc/hostname
 
   - action: pack
     description: Pack into tarball
