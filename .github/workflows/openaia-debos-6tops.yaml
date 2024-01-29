@@ -21,21 +21,33 @@ jobs:
     - name: Set up Remote Docker
       uses: docker/setup-buildx-action@v1
 
+    - name: Authenticate Docker Registry
+      run: |
+        echo "Decoded Docker Auth Config:"
+        decoded_config=$(echo -n "${{ secrets.DOCKER_AUTH_CONFIG }}" | base64 --decode)
+        echo "$decoded_config" > $HOME/.docker/config.json
+        cat $HOME/.docker/config.json
+
     - name: Build OpenAIA Debos
       run: |
+        sudo apt install qemu-user-static
+        sudo apt install binfmt-support
         docker run --rm --tty \
           --privileged \
           --net host \
           -v ${{ github.workspace }}:/home/build/shared \
-          -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 \
+          -v /dev:/dev \
+          -e DEBIAN_FRONTEND=noninteractive \
+          -e TERM=xterm-256color \
+          -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 \
           sudo debos --memory=4Gb -t imgname:6tops recipe.yaml
 
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2023.12-6TOPS-rc4"
+        tag_name: "v2024.02-6TOPS-rc1"
         body: |
-          ## OpenAIA Debos v2023.12-6TOPS-rc4
+          ## OpenAIA Debos v2024.02-6TOPS-rc1
           - Add RTL8852BE WiFi/BT firmware
           - Cleanup packages
         files: |
