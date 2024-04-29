@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ -d "prebuilt" ] ; then
-    echo "ERROR: prebuilt directory exists. Please remove it before running this script."
-    exit 1
+    echo "WARN: prebuilt directory exists. Please remove it before running this script."
+    exit 0
 fi
 
 # u-boot
