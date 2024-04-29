@@ -13,15 +13,15 @@ wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot
 wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
 
 # linux
-KERNEL_REL="v2023.12-6TOPS-rc2"
+KERNEL_REL="v2024.02-6TOPS"
 echo "=== Downloading linux artifacts ==="
-wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/kernel/releases/download/$KERNEL_REL/linux.tar.xz"
+wget --no-verbose --show-progress -P prebuilt "https://github.com/edgeble/kernel/releases/download/$KERNEL_REL/linux.tar.xz"
 tar xvf prebuilt/linux.tar.xz -C prebuilt
 rm -rf prebuilt/linux.tar.xz
 
 # modules
 echo "=== Downloading modules artifacts ==="
-wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/kernel/releases/download/$KERNEL_REL/modules.tar.xz"
+wget --no-verbose --show-progress -P prebuilt "https://github.com/edgeble/kernel/releases/download/$KERNEL_REL/modules.tar.xz"
 tar xvf prebuilt/modules.tar.xz -C prebuilt
 rm -rf prebuilt/modules.tar.xz
 
