@@ -24,6 +24,7 @@ jobs:
     - name: Authenticate Docker Registry
       run: |
         echo "Decoded Docker Auth Config:"
+        echo "${{ secrets.DOCKER_AUTH_CONFIG }}"
         decoded_config=$(echo -n "${{ secrets.DOCKER_AUTH_CONFIG }}" | base64 --decode)
         echo "$decoded_config" > $HOME/.docker/config.json
         cat $HOME/.docker/config.json
@@ -45,11 +46,11 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2024.02-6TOPS-rc1"
+        tag_name: "v2024.04-6TOPS"
         body: |
-          ## OpenAIA Debos v2024.02-6TOPS-rc1
-          - Add RTL8852BE WiFi/BT firmware
-          - Cleanup packages
+          ## OpenAIA Debos v2024.04-6TOPS
+          - Bump linux v2024.02-6TOPS
+          - Update extlinux
         files: |
           ${{ github.workspace }}/ospack-bullseye-arm64.tar.gz
           ${{ github.workspace }}/osvideopack-bullseye-arm64.tar.gz
