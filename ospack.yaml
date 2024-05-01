@@ -20,6 +20,7 @@ actions:
     packages:
       - systemd
       - systemd-sysv
+      - systemd-timesyncd
       - udev
 
   - action: apt
