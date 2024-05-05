@@ -59,6 +59,19 @@ actions:
     source: overlay/boot/rockchip
     destination: /boot
 
+  - action: overlay
+    description: Packages overlay
+    source: overlay/packages
+    destination: /opt
+
+  - action: run
+    description: Resize assistant
+    chroot: true
+    command: |
+      set -e
+      dpkg -i /opt/resize-assistant_0.2_all.deb
+      sudo rm -rf /opt/*
+
   - action: raw
     description: Flash idbloader.img to loader1
     origin: recipe
