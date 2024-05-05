@@ -43,7 +43,7 @@ actions:
   - action: apt
     description: Install misc packages
     packages:
-      - network-manager
+      - network-manager-gnome
       - net-tools
       - iproute2
       - iperf3
