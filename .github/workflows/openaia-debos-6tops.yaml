@@ -46,11 +46,13 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2024.04-6TOPS"
+        tag_name: "build-3"
         body: |
-          ## OpenAIA Debos v2024.04-6TOPS
-          - Bump linux v2024.02-6TOPS
-          - Update extlinux
+          ## OpenAIA Debos Build 3
+          - fix hostname
+          - add network-manager-gnome
+          - default ncm6a-cam1
+          - resize-assistant
         files: |
           ${{ github.workspace }}/ospack-bullseye-arm64.tar.gz
           ${{ github.workspace }}/osvideopack-bullseye-arm64.tar.gz
