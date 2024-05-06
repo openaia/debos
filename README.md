@@ -17,12 +17,12 @@ Build OpenAIA for 6TOPS,
 ```
 $ cd debos
 $ ./download-artifacts.sh
-$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 sudo debos --memory=4Gb -t imgname:6tops recipe.yaml
+$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 sudo debos --memory=4Gb -t buildnr:b0 recipe.yaml
 ```
 
 ## Program
 
 We can program microSD or eMMC, assume /dev/sdX is microSD detected in host,
 ```
-$ sudo bmaptool copy --bmap openaia-bullseye-6tops.bmap openaia-bullseye-6tops.img.gz /dev/sdX
+$ sudo bmaptool copy --bmap ncm6b-openaia-deb11-b0.bmap ncm6b-openaia-deb11-b0.img.gz /dev/sdX
 ```
