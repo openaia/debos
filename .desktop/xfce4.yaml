@@ -1,0 +1,24 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+
+architecture: {{ $architecture }}
+
+actions:
+- action: apt
+  description: Desktop Environment - XFCE
+  packages:
+  - xfce4
+  - xfce4-goodies
+  - task-xfce-desktop
+
+- action: apt
+  description: Display Manager - LightDM
+  packages:
+  - lightdm
+
+- action: apt
+  description: Windowing System - X11
+  packages:
+  - xserver-xorg
+  - xserver-xorg-dev
+  - xserver-xorg-legacy

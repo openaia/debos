@@ -85,24 +85,9 @@ actions:
       - librockchip-vpu0
       - rockchip-mpp-demos
 
-  - action: apt
-    description: Xfce packages
-    packages:
-      - xfce4
-      - xfce4-goodies
-      - task-xfce-desktop
-      - lightdm
-      - dialog
-      - tango-icon-theme
-      - light-locker
-      - at-spi2-core
-
-  - action: apt
-    description: Xserver
-    packages:
-      - xserver-xorg-core=2:1.20.11-1
-      - xserver-xorg-dev=2:1.20.11-1
-      - xserver-xorg-legacy=2:1.20.11-1
+  - action: recipe
+    description: Install desktop
+    recipe: .desktop/xfce4.yaml
 
   - action: overlay
     description: Add iqfiles
