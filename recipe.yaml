@@ -1,6 +1,7 @@
 # recipe.yaml
 
-{{ $imgname := or .imgname "dummy" }}
+{{ $imgname := or .imgname "6tops" }}
+{{ $buildnr := or .buildnr "b0" }}
 
 architecture: arm64
 
@@ -16,4 +17,4 @@ actions:
 - action: recipe
   recipe: ./image.yaml
   variables:
-    imgname: {{ $imgname }}
+    buildnr: {{ $buildnr }}
