@@ -41,22 +41,19 @@ jobs:
           -e DEBIAN_FRONTEND=noninteractive \
           -e TERM=xterm-256color \
           -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 \
-          sudo debos --memory=4Gb -t imgname:6tops recipe.yaml
+          sudo debos --memory=4Gb -t buildnr:b4 recipe.yaml
 
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "build-3"
+        tag_name: "build-4"
         body: |
           ## OpenAIA Debos Build 3
-          - fix hostname
-          - add network-manager-gnome
-          - default ncm6a-cam1
-          - resize-assistant
+          - update imgname
+          - gst pkgs
+          - add extlinux menu
         files: |
-          ${{ github.workspace }}/ospack-bullseye-arm64.tar.gz
-          ${{ github.workspace }}/osvideopack-bullseye-arm64.tar.gz
-          ${{ github.workspace }}/openaia-bullseye-6tops.bmap
-          ${{ github.workspace }}/openaia-bullseye-6tops.img.gz
+          ${{ github.workspace }}/ncm6b-openaia-deb11-b4.bmap
+          ${{ github.workspace }}/ncm6b-openaia-deb11-b4.img.gz
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
