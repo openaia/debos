@@ -7,18 +7,11 @@ actions:
 - action: apt
   description: Desktop Environment - XFCE
   packages:
-  - xfce4
-  - xfce4-goodies
   - task-xfce-desktop
-
-- action: apt
-  description: Display Manager - LightDM
-  packages:
-  - lightdm
-
-- action: apt
-  description: Windowing System - X11
-  packages:
-  - xserver-xorg
-  - xserver-xorg-dev
-  - xserver-xorg-legacy
+  - thunar-volman
+  - xfce4-clipman
+  - xfce4-notifyd
+  - xfce4-power-manager
+  - xfce4-screenshooter
+  - xfce4-terminal
+  - desktop-base

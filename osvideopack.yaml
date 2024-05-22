@@ -106,11 +106,6 @@ actions:
     source: overlay/etc/iqfiles/
     destination: /etc/iqfiles/
 
-  - action: run
-    description: Revert Radxa APT
-    chroot: true
-    script: scripts/setup-radxa-apt.sh revert
-
   - action: pack
     description: Pack into tarball
     file: {{ $osvideopack }}.tar.gz
