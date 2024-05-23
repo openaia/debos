@@ -2,7 +2,7 @@
 {{ $suite := or .suite "bullseye" }}
 {{ $ospack := or .ospack (printf "ospack-%s-%s" $suite $architecture) }}
 {{ $mediapack := or .mediapack (printf "mediapack-%s-%s" $suite $architecture) }}
-{{ $window := or .window "wayland" }}
+{{ $window := or .window "none" }}
 
 architecture: {{ $architecture }}
 

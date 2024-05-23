@@ -1,6 +1,6 @@
 {{ $architecture := or .architecture "arm64" }}
 {{ $suite := or .suite "bullseye" }}
-{{ $window := or .window "wayland" }}
+{{ $window := or .window "none" }}
 
 architecture: {{ $architecture }}
 
@@ -28,4 +28,13 @@ actions:
       - libmali-valhall-g610-g6p0-x11-gbm
       - glmark2-es2-x11
       - chromium-x11
+{{ end }}
+
+{{ if eq $window "none" }}
+  - action: run
+    description: Window System None
+    chroot: true
+    command: |
+      set -e
+      echo "No! Window System Selected!"
 {{ end }}

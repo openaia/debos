@@ -2,7 +2,7 @@
 
 {{ $imgname := or .imgname "6tops" }}
 {{ $buildnr := or .buildnr "b0" }}
-{{ $window := or .window "wayland" }}
+{{ $window := or .window "none" }}
 
 architecture: arm64
 
