@@ -20,3 +20,12 @@ actions:
     source: overlay/home/open/wayland
     destination: /home/open
 {{ end }}
+
+{{ if eq $window "x11" }}
+  - action: apt
+    description: Install {{ $window }}
+    packages:
+      - libmali-valhall-g610-g6p0-x11-gbm
+      - glmark2-es2-x11
+      - chromium-x11
+{{ end }}
