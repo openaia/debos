@@ -32,6 +32,10 @@ actions:
     description: Install Camera System
     recipe: .desktop/camera.yaml
 
+  - action: recipe
+    description: Install XFCE
+    recipe: .desktop/xfce.yaml
+
   - action: pack
     description: Pack into tarball
     file: {{ $mediapack }}.tar.gz
