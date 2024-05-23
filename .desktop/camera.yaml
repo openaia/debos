@@ -1,0 +1,15 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: apt
+    description: Install camera pkgs
+    packages:
+      - task-rk3588-camera
+
+  - action: overlay
+    description: Add iqfiles
+    source: overlay/etc/iqfiles
+    destination: /etc/iqfiles/

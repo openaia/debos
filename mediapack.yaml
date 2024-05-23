@@ -28,6 +28,10 @@ actions:
     description: Install Video System
     recipe: .desktop/video.yaml
 
+  - action: recipe
+    description: Install Camera System
+    recipe: .desktop/camera.yaml
+
   - action: pack
     description: Pack into tarball
     file: {{ $mediapack }}.tar.gz
