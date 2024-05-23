@@ -13,7 +13,7 @@ actions:
     hostname: {{ $imgname }}
 
 - action: recipe
-  recipe: ./osvideopack.yaml
+  recipe: ./mediapack.yaml
   variables:
     window: {{ $window }}
 

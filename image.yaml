@@ -1,6 +1,6 @@
 {{ $architecture := or .architecture "arm64" }}
 {{ $suite := or .suite "bullseye" }}
-{{ $osinpack := or .osinpack "osvideopack" }}
+{{ $osinpack := or .osinpack "mediapack" }}
 {{ $ospack := or .ospack (printf "%s-%s-%s" $osinpack $suite $architecture) }}
 {{ $board := or .board "neu6b-io" }}
 {{ $imagesize := or .imagesize "6GB" }}

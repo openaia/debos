@@ -1,7 +1,7 @@
 {{ $architecture := or .architecture "arm64" }}
 {{ $suite := or .suite "bullseye" }}
 {{ $ospack := or .ospack (printf "ospack-%s-%s" $suite $architecture) }}
-{{ $osvideopack := or .osvideopack (printf "osvideopack-%s-%s" $suite $architecture) }}
+{{ $mediapack := or .mediapack (printf "mediapack-%s-%s" $suite $architecture) }}
 {{ $window := or .window "wayland" }}
 
 architecture: {{ $architecture }}
@@ -26,4 +26,4 @@ actions:
 
   - action: pack
     description: Pack into tarball
-    file: {{ $osvideopack }}.tar.gz
+    file: {{ $mediapack }}.tar.gz
