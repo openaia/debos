@@ -3,20 +3,28 @@
 # Function to add Radxa APT repository
 apply_config() {
     local suite="$1"
+    local managed_keyring_repo="radxa-pkg/radxa-archive-keyring"
+    local radxa_mirror="https://radxa-repo.github.io/"
 
-    # Add the repository and import the GPG key
-    echo "deb http://apt.radxa.com/${suite}-stable/ ${suite} main" | tee -a /etc/apt/sources.list.d/apt-radxa-com.list
-    wget -O - apt.radxa.com/${suite}-stable/public.key | apt-key add -
+    # get the keyring
+    temp="$(mktemp)"
+    version="$(curl -L https://github.com/$managed_keyring_repo/releases/latest/download/VERSION)"
+    curl -L --output "$temp" "https://github.com/$managed_keyring_repo/releases/latest/download/radxa-archive-keyring_${version}_all.deb"
+    dpkg -i "$temp"
+    rm -f "$temp"
 
-    # Add package pinning
-    echo "Package: *" > /etc/apt/preferences.d/radxa-conf
-    echo "Pin: origin apt.radxa.com" >> /etc/apt/preferences.d/radxa-conf
-    echo "Pin-Priority: 900" >> /etc/apt/preferences.d/radxa-conf
+    # add bullseye repo
+    echo "deb [signed-by=/usr/share/keyrings/radxa-archive-keyring.gpg] $radxa_mirror$suite $suite main" > /etc/apt/sources.list.d/radxa.list
+    curl -L -o /etc/radxa_apt_snapshot $radxa_mirror$suite/pkgs.json
+
+    # add rockchip-bullseye repo
+    echo "deb [signed-by=/usr/share/keyrings/radxa-archive-keyring.gpg] $radxa_mirror$suite rockchip-$suite main" > /etc/apt/sources.list.d/radxa-rockchip.list
+    curl -L -o /etc/radxa_apt_snapshot $radxa_mirror$suite/pkgs.json
 }
 
 # Function to revert Radxa APT repository
 revert_config() {
-    rm /etc/apt/sources.list.d/apt-radxa-com.list
+    rm /etc/apt/sources.list.d/radxa.list
     rm /etc/apt/preferences.d/radxa-conf
     # Add any additional cleanup here
 }
