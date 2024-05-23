@@ -24,6 +24,10 @@ actions:
     variables:
       window: {{ $window }}
 
+  - action: recipe
+    description: Install Video System
+    recipe: .desktop/video.yaml
+
   - action: pack
     description: Pack into tarball
     file: {{ $mediapack }}.tar.gz

@@ -1,0 +1,10 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: apt
+    description: Install video pkgs
+    packages:
+      - task-rockchip
