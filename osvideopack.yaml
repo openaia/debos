@@ -11,12 +11,6 @@ actions:
     description: Unpack ospack
     file: {{ $ospack }}.tar.gz
 
-  - action: apt
-    description: APT tools
-    packages:
-      - wget
-      - gnupg2
-
   - action: run
     description: Apply Radxa APT
     chroot: true

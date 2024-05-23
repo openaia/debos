@@ -27,8 +27,34 @@ actions:
   - action: apt
     description: Install packages for scripts/setup-user.sh
     packages:
+
+  - action: apt
+    description: Install misc packages
+    packages:
       - sudo
       - adduser
+      - network-manager
+      - net-tools
+      - iproute2
+      - iperf3
+      - i2c-tools
+      - usbutils
+      - pciutils
+      - can-utils
+      - evtest
+      - vim
+      - ppp
+      - picocom
+      - gdisk
+      - parted
+      - bluez
+      - curl
+      - python3
+      - python3-pip
+      - python-is-python3
+      - alsa-utils
+      - pulseaudio-module-bluetooth
+      - pulseaudio
 
   - action: overlay
     description: Copy /etc/hosts
@@ -39,39 +65,6 @@ actions:
     description: Setup user
     chroot: true
     script: scripts/setup-user.sh {{ $hostname }}
-
-  - action: apt
-    description: Install misc packages
-    packages:
-      - network-manager-gnome
-      - net-tools
-      - iproute2
-      - iperf3
-      - iputils-ping
-      - traceroute
-      - i2c-tools
-      - usbutils
-      - pciutils
-      - can-utils
-      - evtest
-      - ppp
-      - picocom
-      - gdisk
-      - parted
-
-  - action: apt
-    description: Sound
-    packages:
-      - pulseaudio-module-bluetooth
-      - pulseaudio
-      - alsa-utils
-      - pavucontrol
-
-  - action: apt
-    description: Bluetooth packages
-    packages:
-      - blueman
-      - bluez
 
   - action: overlay
     description: Enable DHCP IP on Ethernet connections
