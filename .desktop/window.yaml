@@ -1,0 +1,22 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+{{ $window := or .window "wayland" }}
+
+architecture: {{ $architecture }}
+
+actions:
+{{ if eq $window "wayland" }}
+  - action: apt
+    description: Install {{ $window }}
+    packages:
+      - libmali-valhall-g610-g6p0-wayland-gbm
+      - glmark2-es2-wayland
+      - weston
+      - thunar
+      - firefox-esr
+
+  - action: overlay
+    description: Copy home
+    source: overlay/home/open/wayland
+    destination: /home/open
+{{ end }}

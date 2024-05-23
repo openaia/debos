@@ -2,6 +2,7 @@
 
 {{ $imgname := or .imgname "6tops" }}
 {{ $buildnr := or .buildnr "b0" }}
+{{ $window := or .window "wayland" }}
 
 architecture: arm64
 
@@ -13,6 +14,8 @@ actions:
 
 - action: recipe
   recipe: ./osvideopack.yaml
+  variables:
+    window: {{ $window }}
 
 - action: recipe
   recipe: ./image.yaml
