@@ -6,11 +6,11 @@ if [ -d "prebuilt" ] ; then
 fi
 
 # u-boot
-U_BOOT_REL="ncm6b-v2023.11"
+U_BOOT_REL="v2024.05"
 mkdir -p prebuilt
 echo "=== Downloading u-boot artifacts ==="
-wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/idbloader.img"
-wget --no-verbose --show-progress -P prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
+wget --no-verbose --show-progress -P prebuilt "https://github.com/edgeble/u-boot/releases/download/$U_BOOT_REL/idbloader.img"
+wget --no-verbose --show-progress -P prebuilt "https://github.com/edgeble/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
 
 # linux
 KERNEL_REL="v2024.05-6TOPS"
